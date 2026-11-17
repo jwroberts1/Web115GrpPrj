@@ -1,5 +1,4 @@
-'''mermaid
-
+```mermaid
 flowchart TD
     %% Act 1: The Descent
     A[Scene 1: Enter the Volcano] --> B{Crossroads}
@@ -43,5 +42,4 @@ flowchart TD
     O --> O1{Dodge the attack QTE Timer}
     O1 -- Key pressed in time --> R([Victory 3: Dragon Slain in Combat])
     O1 -- Too slow --> U([Death 3: Devoured by the Dragon])
-
-'''
+```
