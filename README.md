@@ -39,8 +39,13 @@ flowchart TD
     %% Opening Split
     Start[Prologue: The Royal Summons] --> Split{First Decision: Choose Your Approach}
     
-    %% Branch B: Zachary's Path (Placeholder)
-    Split -- Path B: Alternate Route --> Z1[Zachary's Storyline - Nodes Pending]
+    %% Branch B: Zachary's Path (Act A: Hardship)
+    Split -- Path B: Alternate Route --> Z1[Scene A: Start at Castle Town]
+    A --> {Vengence?}
+    B --> No --> A[Scene A1: Look for clues about the wrecked Town]
+    B --> Yes --> B[Scene A2: Leave and Enter Canyon between Town and Volcano]
+
+    %% Act B:
     
     %% Branch A: John's Path (Act 1: The Descent)
     Split -- Path A: Enter the Volcano Directly --> A[Scene 1: Enter the Volcano]
