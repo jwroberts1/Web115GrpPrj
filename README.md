@@ -8,7 +8,7 @@ This project is structured around a dual-branch architecture. The player's very 
   * **Storyline Ownership:** Branch A (The Volcano Mystery & Dragon Hunt)
   * **Responsibilities:** Narrative design, Mermaid flowchart architecture, state flag tracking, inventory array logic, text-input puzzle validation, and Quick Time Event (QTE) timer mechanics for Branch A.
 * **Zachary Villard**
-  * **Storyline Ownership:** Branch B (Castle Town Investigation & Canyon Ambush)
+  * **Storyline Ownership:** Branch B (Castle Town Investigation, Goblin Ambush & The Wizard's Jungle)
   * **Responsibilities:** Narrative design, branching flowchart integration, HTML/CSS layout, and interactive JavaScript mechanics for Branch B.
 * **Shared Responsibilities**
   * GitHub repository management, branch maintenance (`main`, `development`, and individual feature branches), peer code reviews via Pull Requests, and shared entry-screen styling.
@@ -24,7 +24,7 @@ A young swordsman trained by his older brother loses everything when a dragon at
 
 At the outset of the journey, the player makes a pivotal first decision that determines which path—and which mystery—they will uncover:
 * **Branch A (Volcano Descent):** The swordsman heads straight into the dragon's volcano lair, uncovering hidden clues, royal conspiracies, and family secrets that lead to three distinct victory endings—each guarded by a high-stakes failure condition.
-* **Branch B (Castle Town):** The swordsman begins in Castle Town, forced to choose between blind vengeance—marching straight into a goblin ambush in the canyon—or staying behind to investigate the wreckage for hidden clues before setting out.
+* **Branch B (Castle Town):** The swordsman begins in Castle Town, choosing between immediate vengeance—fighting through a goblin ambush in the canyon to slay the dragon—or investigating the wreckage to uncover a wizard who hypnotized the dragon, leading to a showdown in the jungle against the wizard's illusions.
 
 ### Gameplay & Navigation
 * **Branching Choices:** Players navigate the story by making decisions at key crossroads, directly altering the narrative path and available endings.
@@ -34,20 +34,34 @@ At the outset of the journey, the player makes a pivotal first decision that det
 
 ## Story Flowchart
 
-The flowchart below outlines the opening split between both team members' storylines and maps out the current branching structure across both paths (32 nodes total).
+The flowchart below outlines the opening split between both team members' storylines and maps out the complete branching structure across both paths (45 nodes total).
 
 ```mermaid
 flowchart TD
     %% Opening Split
     Start[Prologue: The Royal Summons] --> Split{First Decision: Choose Your Approach}
     
-    %% Branch B: Zachary's Path (Castle Town & Canyon)
-    Split -- Path B: Start at Castle Town --> Z1[Scene 1: Start at Castle Town]
-    Z1 --> Z2{"Vengeance?"}
-    Z2 -->|Yes| Z4[March straight to canyon between town and volcano]
-    Z2 -->|No| Z3[Investigate wreck before leaving]
-    Z3 --> Z5[Clues found about wreck]
-    Z4 --> Z6[A horde of goblins charge at you in your sight]
+    %% Branch B: Zachary's Path (Castle Town, Canyon & Wizard's Jungle)
+    Split -- Path B: Start at Castle Town --> ZA[Scene 1: Start at Castle Town]
+    ZA --> ZB{"Vengeance?"}
+    ZB -->|Yes| ZD[March straight to canyon between town and volcano]
+    ZB -->|No| ZC[Investigate wreck before leaving]
+    ZC --> ZE{"Found any clues?"}
+    ZD --> ZF[A horde of goblins charge at you in your sight]
+    ZE -->|No| ZM[No luck, just find the Dragon]
+    ZM --> ZD
+    ZE -->|Yes| ZG["Find out it was actually set up by a wizard that hypnotized the dragon into attacking the village."]
+    ZF --> ZH{"Survive?"}
+    ZH -->|No| ZI([Game Over])
+    ZH -->|Yes| ZJ[Win and Proceed to Volcano]
+    ZJ --> ZK[Find the Dragon and Slay it]
+    ZK --> ZL(["The End...?"])
+    ZG --> ZN[Go to the Jungle Instead Where the Wizard Lives]
+    ZN --> ZO["Wizard Puts a Spell; you're lost until you look past the illusion of the spell"]
+    ZO --> ZP{"Succeed?"}
+    ZP -->|No| ZQ([Game Over])
+    ZP -->|Yes| ZR["You go past the Wizard's defenses and defeat him"]
+    ZR --> ZS([The End])
     
     %% Branch A: John's Path (Act 1: The Descent)
     Split -- Path A: Enter the Volcano Directly --> A[Scene 1: Enter the Volcano]
