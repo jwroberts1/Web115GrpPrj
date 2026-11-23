@@ -8,7 +8,7 @@ This project is structured around a dual-branch architecture. The player's very 
   * **Storyline Ownership:** Branch A (The Volcano Mystery & Dragon Hunt)
   * **Responsibilities:** Narrative design, Mermaid flowchart architecture, state flag tracking, inventory array logic, text-input puzzle validation, and Quick Time Event (QTE) timer mechanics for Branch A.
 * **Zachary Villard**
-  * **Storyline Ownership:** Branch B *(To be added)*
+  * **Storyline Ownership:** Branch B (Castle Town Investigation & Canyon Ambush)
   * **Responsibilities:** Narrative design, branching flowchart integration, HTML/CSS layout, and interactive JavaScript mechanics for Branch B.
 * **Shared Responsibilities**
   * GitHub repository management, branch maintenance (`main`, `development`, and individual feature branches), peer code reviews via Pull Requests, and shared entry-screen styling.
@@ -17,12 +17,14 @@ This project is structured around a dual-branch architecture. The player's very 
 
 ## Application Overview
 
-**Hero Quest** is a browser-based interactive fantasy/mystery adventure game built with HTML, CSS, and JavaScript. 
+**Hero Quest** is a browser-based interactive fantasy/mystery adventure game built with HTML, CSS, and JavaScript.
 
 ### Story Premise
-A young swordsman trained by his older brother loses everything when a dragon attacks their village, slaying his brother and plundering the settlement's gold and jewels. Months later, with the village's economy in ruins, the Royal Family tasks the young swordsman with tracking down the dragon and recovering the stolen royal jewels. 
+A young swordsman trained by his older brother loses everything when a dragon attacks their village, slaying his brother and plundering the settlement's gold and jewels. Months later, with the village's economy in ruins, the Royal Family tasks the young swordsman with tracking down the dragon and recovering the stolen royal jewels.
 
-At the outset of the journey, the player makes a pivotal first decision that determines which path—and which mystery—they will uncover. In **Branch A**, the swordsman descends into the dragon's volcano lair, uncovering hidden clues, royal conspiracies, and family secrets that lead to three distinct victory endings—each guarded by a high-stakes failure condition.
+At the outset of the journey, the player makes a pivotal first decision that determines which path—and which mystery—they will uncover:
+* **Branch A (Volcano Descent):** The swordsman heads straight into the dragon's volcano lair, uncovering hidden clues, royal conspiracies, and family secrets that lead to three distinct victory endings—each guarded by a high-stakes failure condition.
+* **Branch B (Castle Town):** The swordsman begins in Castle Town, forced to choose between blind vengeance—marching straight into a goblin ambush in the canyon—or staying behind to investigate the wreckage for hidden clues before setting out.
 
 ### Gameplay & Navigation
 * **Branching Choices:** Players navigate the story by making decisions at key crossroads, directly altering the narrative path and available endings.
@@ -32,15 +34,20 @@ At the outset of the journey, the player makes a pivotal first decision that det
 
 ## Story Flowchart
 
-The flowchart below outlines the initial split between both team members' storylines and maps out the complete branching structure for Branch A (26 nodes total, including 3 distinct victories and 3 unique death conditions).
+The flowchart below outlines the opening split between both team members' storylines and maps out the current branching structure across both paths (32 nodes total).
 
 ```mermaid
 flowchart TD
     %% Opening Split
     Start[Prologue: The Royal Summons] --> Split{First Decision: Choose Your Approach}
     
-    %% Branch B: Zachary's Path (Act A: Hardship)
-    Split -- Path B: Alternate Route --> Z1[Scene A: Start at Castle Town]
+    %% Branch B: Zachary's Path (Castle Town & Canyon)
+    Split -- Path B: Start at Castle Town --> Z1[Scene 1: Start at Castle Town]
+    Z1 --> Z2{"Vengeance?"}
+    Z2 -->|Yes| Z4[March straight to canyon between town and volcano]
+    Z2 -->|No| Z3[Investigate wreck before leaving]
+    Z3 --> Z5[Clues found about wreck]
+    Z4 --> Z6[A horde of goblins charge at you in your sight]
     
     %% Branch A: John's Path (Act 1: The Descent)
     Split -- Path A: Enter the Volcano Directly --> A[Scene 1: Enter the Volcano]
